@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FreshBite</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            
+        }
+        .navbar-brand {
+            font-weight: bold;
+            font-size: 1.5rem;
+            color:rgb(102, 102, 216);
+        }
+    
+        .custom-header .nav-link {
+            color: rgba(41, 34, 66, 0.9) !important;
+            margin: 0 0.5rem;
+            font-weight: 500;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .custom-header .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 50%;
+            width: 0;
+            height: 2px;
+            background: rgb(89, 63, 186);
+            transition: all 0.3s ease;
+            transform: translateX(-50%);
+        }
+
+        .custom-header .nav-link:hover::after,
+        .custom-header .nav-link.active::after {
+            width: 80%;
+        }
+
+        .custom-header .nav-link:hover {
+            color: #6b6bef !important;
+            transform: translateY(-3px);
+        }
+        
+        #home {
+            height: 100vh;
+            background: linear-gradient(rgba(102, 126, 234, 0.7), rgba(118, 75, 162, 0.7)), 
+                        url('brunch_platter.jpg') no-repeat center center/cover;
+        }
+        #home .btn-primary {
+            background: white;
+            color: #667eea;
+            border: none;
+            padding: 12px 35px;
+            font-weight: 600;
+            border-radius: 50px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+        }
+        
+        #home .btn-primary:hover {
+            background: #667eea;
+            color: white;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+        }
+        
+        .features-section {
+            padding: 80px 0;
+            background: linear-gradient(180deg, #e5e6f3 0%, #f9fafb 100%);
+        }
+
+        .feature-box {
+            padding: 40px 30px;
+            border-radius: 20px;
+            background: white;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            transition: all 0.4s ease;
+            height: 100%;
+        }
+
+        .feature-box:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.1);
+        }
+
+        .feature-box i {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .feature-box h4 {
+            font-weight: 700;
+            color: #1f2937;
+            margin-bottom: 1rem;
+        }
+
+        .feature-box p {
+            color: #6b7280;
+            line-height: 1.6;
+        }
+        
+        .card-body .price {
+            text-align: center;
+            font-size: 1.25rem;
+        }
+        .product-section {
+            padding: 80px 0;
+            background: linear-gradient(180deg, #f9fafb 0%, #ffffff 100%);
+        }
+
+        .product-card {
+            border: none;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            transition: all 0.4s ease;
+            height: 100%;
+            background: rgb(255, 255, 255);
+        }
+
+        .product-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
+        }
+
+        .product-card img {
+            height: 250px;
+            object-fit: cover;
+            transition: transform 0.4s ease;
+        }
+
+        .product-card:hover img {
+            transform: scale(1.1);
+        }
+
+        .product-card .card-body {
+            padding: 1.5rem;
+        }
+
+        .product-card .card-title {
+            font-weight: 700;
+            color: #1f2937;
+            margin-bottom: 0.8rem;
+        }
+
+        .product-card .card-text {
+            color: #6b7280;
+            font-size: 0.95rem;
+        }
+
+        .product-card .price {
+            font-size: 1.5rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-top: 1rem;
+        }
+        
+        #contact {
+            padding: 80px 0;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        #contact h2 {
+            color: white;
+            margin-bottom: 3rem;
+        }
+
+        #contact .form-control {
+            border-radius: 15px;
+            padding: 15px;
+            border: none;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        #contact .form-control:focus {
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+            transform: translateY(-2px);
+            transition: all 0.3s ease;
+        }
+
+        #contact .btn-submit {
+            background: white;
+            color: #667eea;
+            padding: 15px 50px;
+            border-radius: 50px;
+            font-weight: 700;
+            border: none;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        #contact .btn-submit:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+        }
+
+        .custom-footer {
+            background: linear-gradient(135deg, #2c3e50 0%, #000e1c 100%);
+            color: white;
+            padding: 3rem 0 1rem;
+            margin-top: 4rem;
+            margin-top: auto;
+        }
+
+        .custom-footer h5 {
+            color: #3498db;
+            font-weight: bold;
+            margin-bottom: 1.5rem;
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+
+        .custom-footer h5::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background: #3498db;
+        }
+
+        .custom-footer a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: inline-block;
+        }
+
+        .custom-footer a:hover {
+            color: #112b3c;
+            transform: translateX(5px);
+        }
+
+        .custom-footer .social-links a {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            line-height: 40px;
+            text-align: center;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            margin-right: 0.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .custom-footer .social-links a:hover {
+            background: #3498db;
+            transform: translateY(-3px);
+        }
+        
+
+        .btn-filter {
+        background-color: #667eea; 
+        color: #fff;
+        border: none;
+        border-radius: 8px;
+        padding: 8px 16px;
+        margin: 4px;
+        transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+
+        .btn-filter:hover {
+        background-color: rgb(95, 108, 202);
+        transform: scale(1.05);
+        }
+    </style>
+    
+</head>
+<body>
+    <!--Navbar-->
+    <header class="custom-header">
+    <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm fixed-top">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">
+                <i class="fas fa-leaf"></i>FreshBite</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#home">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#product">Produk</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contact">Kontak</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    </header>
+
+    <!--Hero section-->
+    <section id="home" class="d-flex align-items-center justify-content-center">
+        <div class="text-center text-white">
+            <h1 class="display-4 fw-bold mb-4">Selamat Datang di FreshBite</h1>
+            <p class="lead">Makanan Sehat dan Bernutrisi yang Siap Mengenyangkan Perut Anda</p>
+            <a href="#product" class="btn btn-primary btn-lg mt-3">Jelajahi Produk Kami</a>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features-section loading">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 mb-4">
+                    <div class="feature-box">
+                        <i class="fas fa-check-circle"></i>
+                        <h4>100% Organik</h4>
+                        <p>Semua produk kami berasal dari bahan organik pilihan tanpa pestisida untuk kesehatan Anda.</p>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="feature-box">
+                        <i class="fas fa-truck-fast"></i>
+                        <h4>Pengiriman Cepat</h4>
+                        <p>Kami memastikan produk sampai dengan segar dalam 24 jam ke alamat Anda.</p>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="feature-box">
+                        <i class="fas fa-star"></i>
+                        <h4>Kualitas Terbaik</h4>
+                        <p>Produk berkualitas tinggi dengan harga terjangkau untuk semua kalangan.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Image Slider -->
+        <section class="container my-5">
+            <h2 class="text-center mb-4 fw-bold" >Galeri Produk FreshBite</h2>
+            <div id="carouselExample" class="carousel slide" data-bs-ride="carousel">
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <img src="slide1.jpg" class="d-block w-100" alt="" style="height: 400px; object-fit: cover; border-radius: 15px;">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="slide2.jpg" class="d-block w-100" alt="" style="height: 400px; object-fit: cover; border-radius: 15px;">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="slide3.jpg" class="d-block w-100" alt="" style="height: 400px; object-fit: cover; border-radius: 15px;">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="slide4.jpg" class="d-block w-100" alt="" style="height: 400px; object-fit: cover; border-radius: 15px;">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="slide5.jpg" class="d-block w-100" alt="" style="height: 400px; object-fit: cover; border-radius: 15px;">
+                    </div>
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon"></span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+                    <span class="carousel-control-next-icon"></span>
+                </button>
+            </div>
+        </section>
+
+    <!-- Tombol Filter -->
+        <div class="filter-buttons text-center mb-4">
+            <button class="btn btn-filter fw-bold" data-filter="salad">Salad</button>
+            <button class="btn btn-filter fw-bold" data-filter="makanan">Makanan Berat</button>
+            <button class="btn btn-filter fw-bold" data-filter="all">Semua</button>
+        </div>
+
+    <!-- Product Section -->
+        <section class="product">
+            <div class="container py-5">
+                <h2 class="text-center mb-4 fw-bold" id="product">Produk Kami</h2>
+                <p class="text-center text-muted mb-5">Pilihan makanan sehat untuk keluarga Anda.</p>
+                <div class="row">
+                    <div class="col-md-4 mb-4">
+                        <div class="card product-card" data-category="makanan">
+                            <img src="Chicken_teriyaki_Rice Bowl.jpg" class="card-img-top" alt="Product 1">
+                            <div class="card-body">
+                                <h5 class="card-title">Chicken Teriyaki Rice Bowl</h5>
+                                <p class="card-text">Potongan dada ayam yang dimasak hingga empuk lalu dibalut dengan saus Teriyaki yang kental dengan cita rasa manis dan gurih. Ayam ini disajikan bersama tumisan sayuran yang masih renyah, seperti brokoli, wortel, dan paprika merah untuk memberikan nutrisi, warna, dan tekstur.</p>
+                                <p class="price">Rp.35.000</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 mb-4">
+                        <div class="card product-card" data-category="makanan">
+                            <img src="healthy_chichkenbowl_nasi merah.jpg" class="card-img-top" alt="Product 2">
+                            <div class="card-body">
+                                <h5 class="card-title">Chicken Bowl Nasi Merah</h5>
+                                <p class="card-text">Potongan dada ayam panggang atau tumis yang terlihat juicy dan berwarna keemasan, kemungkinan dibumbui dengan bawang putih dan rempah-rempah. Taburan peterseli cincang menambah aroma. Nasi merah yang kaya serat, menjadi sumber energi yang dilepaskan secara perlahan.</p>
+                                <p class="price">Rp40.000</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 mb-4">
+                        <div class="card product-card" data-category="salad">
+                            <img src="grilled_chicken_salad.jpg" class="card-img-top" alt="Product 3">
+                            <div class="card-body">
+                                <h5 class="card-title">Grilled Chicken Salad</h5>
+                                <p class="card-text">Disajikan dengan topping utama berupa irisan dada ayam panggang yang juicy dan penuh rasa. Sebagai sumber protein tambahan dan penambah tekstur, ditambahkan telur rebus yang dipotong dua dan tomat ceri segar ditambahkan taburan lada hitam.</p>
+                                <p class="price">Rp50.000</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 mb-4">
+                        <div class="card product-card" data-category="salad">
+                            <img src="healthy_chichken_avocado_bowl.jpg" class="card-img-top" alt="Product 4">
+                            <div class="card-body">
+                                <h5 class="card-title">Healthy Chicken Avocado Bowl</h5>
+                                <p class="card-text">Potongan dada ayam tanpa tulang yang dipanggang dan disajikan sebagai sumber protein utama, irisan alpukat segar yang menjadi sumber lemak sehat dan telur Rebus Setengah matang (soft-boiled) dan ditaburi biji wijen. Hidangan yang padat nutrisi, kaya protein, lemak sehat, dan serat.</p>
+                                <p class="price">Rp45.000</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 mb-4">
+                        <div class="card product-card" data-category="makanan">
+                            <img src="Nasi_ayam_hainan.jpg" class="card-img-top" alt="Product 5">
+                            <div class="card-body">
+                                <h5 class="card-title">Nasi Ayam Hainan</h5>
+                                <p class="card-text">Potongan daging ayam bagian paha atau dada, yang direbus dalam kaldu jahe dan bawang putih hingga sangat empuk dan lembut, nasi merah sebagai pengganti nasi putih biasa, digunakan nasi merah yang lebih kaya serat dan bernutrisi memiliki cocolsan saus pedas dan gurih.</p>
+                                <p class="price">Rp65.000</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 mb-4">
+                        <div class="card product-card" data-category="makanan">
+                            <img src="suki_kering.jpg" class="card-img-top" alt="Product 6">
+                            <div class="card-body">
+                                <h5 class="card-title">Suki Kering</h5>
+                                <p class="card-text">Hidangan sukiyaki berisi irisan daging, udang, olahan daging cincang, telur, dan sayuran direbus hingga matang, disajikan di atas piring dan dinikmati dengan cara dicocol ke dalam saus racikan khas Thailand dengan cita rasa pedas manis yang menjadi pusat kenikmatannya.</p>
+                                <p class="price">Rp.75.000</p>
+                            </div>
+                        </div>
+                    </div>
+                </div> 
+            </div> 
+        </section>
+
+    <!--Contact Section-->
+    <section id="contact" class="loading">
+        <div class="container">
+            <h2 class="text-center fw-bold">Hubungi Kami</h2>
+            <div class="row justify-content-center">
+                <div class="col-md-8">
+                    <form id="contactForm">
+                        <div class="mb-4">
+                            <label for="name" class="form-label">Nama</label>
+                            <input type="text" class="form-control" id="name" placeholder="Masukkan nama">
+                        </div>
+                        <div class="mb-4">
+                            <label for="email" class="form-label">Email</label>
+                            <input type="email" class="form-control" id="email" placeholder="Nama@gmail.com">
+                        </div>
+                        <div class="mb-4">
+                            <label for="message" class="form-label">Pesan</label>
+                            <textarea class="form-control" id="message" rows="5" placeholder="Masukkan pesan di sini.."></textarea>
+                        </div>
+                        <div class="text-center">
+                            <button type="submit" class="btn btn-submit">Kirim Pesan</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="custom-footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 mb-4">
+                    <h5>Tentang FreshBite</h5>
+                    <p>FreshBite adalah marketplace healthy food terpercaya yang menyediakan produk berkualitas tinggi dan bernutrisi untuk gaya hidup sehat keluarga Anda.</p>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <h5>Link Cepat</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="#home"><i class="fas fa-chevron-right"></i> Home</a></li>
+                        <li class="mb-2"><a href="#product"><i class="fas fa-chevron-right"></i> Produk</a></li>
+                        <li class="mb-2"><a href="#contact"><i class="fas fa-chevron-right"></i> Kontak</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <h5>Ikuti Kami</h5>
+                    <div class="social-links">
+                        <a href="https://www.facebook.com" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://www.instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>
+                        <a href="https://www.twitter.com" target="_blank"><i class="fab fa-twitter"></i></a>
+                        <a href="https://wa.me/6281229531940" target="_blank"><i class="fab fa-whatsapp"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="text-center pt-3">
+                <p>&copy; 2025 FreshBite. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        document.querySelector("form").addEventListener("submit", function(e) {
+        e.preventDefault();
+
+        const name = document.getElementById("name").value.trim();
+        const email = document.getElementById("email").value.trim();
+        const message = document.getElementById("message").value.trim();
+
+        if (!name || !email || !message) {
+        alert("Semua field harus diisi!");
+        } else {
+        alert("Pesan berhasil dikirim!");
+        this.reset();
+        }
+    });
+        document.querySelectorAll("button[data-filter]").forEach(button => {
+        button.addEventListener("click", () => {
+        const kategori = button.getAttribute("data-filter");
+        document.querySelectorAll(".product-card").forEach(card => {
+        const cardKategori = card.getAttribute("data-category");
+        if (kategori === "all" || cardKategori === kategori) {
+        card.classList.remove("d-none");
+        } else {
+        card.classList.add("d-none");
+        }
+        });
+        });
+    });
+    
+    </script>
+</body>
+</html>
