@@ -30,4 +30,4 @@ Footer untuk link cepat, dan tautan media sosial.
 ![image alt](https://github.com/Novasyaaulia09/Project-PBP-Novasya-Aulia/blob/a976deac71ba19020848b985441e53fd68b0a289/Tampilan%20Webiste/Screenshot%202025-10-21%20201637.png)
 
 
-[image alt](https://github.com/Novasyaaulia09/Project-PBP-Novasya-Aulia/blob/4d8327f9c0f31c5ec68065bef174c155e1da6082/Tampilan%20Webiste/Screenshot_22-10-2025_174745_127.0.0.1.jpeg)
+![image alt](https://github.com/Novasyaaulia09/Project-PBP-Novasya-Aulia/blob/4d8327f9c0f31c5ec68065bef174c155e1da6082/Tampilan%20Webiste/Screenshot_22-10-2025_174745_127.0.0.1.jpeg)
